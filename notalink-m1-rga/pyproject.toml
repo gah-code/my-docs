@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "notalink"
+version = "0.1.0"
+description = "NotaLink: Research-grade AI applets with Zettelkasten using Python + MCP + Flask"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "NotaLink Team"}]
+dependencies = [
+  "Flask>=3.0",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.2",
+  "python-dotenv>=1.0",
+  "mcp[cli]>=1.2.0",
+  "ulid-py>=1.1",
+  "orjson>=3.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2", "pre-commit>=3.7", "black>=24.8", "ruff>=0.6.9", "isort>=5.13", "mypy>=1.11"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310","py311","py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+lint.select = ["E","F","I","UP","B","W","C90"]
+lint.ignore = ["E501"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = ["notalink", "mcp_server", "app", "ai", "tests"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

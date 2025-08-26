@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports: ["5000:5000"]
+    env_file: .env
+    volumes: ["./var/data:/app/var/data", "./var/traces:/app/var/traces"]
+    restart: unless-stopped

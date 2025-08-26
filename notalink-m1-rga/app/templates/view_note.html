@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="card">
+  <header class="note-header">
+    <h1>{{ note.title or "Untitled Note" }}</h1>
+    <div class="muted">{{ note.category }} • {{ note.created_at }}</div>
+  </header>
+  <section class="note-body"><pre>{{ note.body }}</pre></section>
+  {% if note.tags %}<footer class="note-tags">{% for t in note.tags %}<span class="tag">{{ t }}</span>{% endfor %}</footer>{% endif %}
+</article>
+{% endblock %}

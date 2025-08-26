@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="stack">
+  <h1>Recent Notes</h1>
+  {% if notes %}
+  <ul class="note-list">
+    {% for n in notes %}
+    <li><a href="{{ url_for('ui.view_note', note_id=n.id) }}">{{ n.title or n.body[:64] ~ ('…' if n.body|length > 64 else '') }}</a> <small class="muted">— {{ n.category }}</small></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">No notes yet. <a href="{{ url_for('ui.add_note_form') }}">Create your first note</a>.</p>
+  {% endif %}
+</section>
+{% endblock %}
